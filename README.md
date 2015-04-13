@@ -42,7 +42,7 @@ System callbacks are handled by the `AppDelegate` class.
 
 This project is setup to work with the latest version of the Skillz iOS SDK, which can be found at https://skillz.com/developer/downloads.
 
-Once the SDK is downloaded, the Skillz embedded framework will need to be added to the project. For additional SDK installation details refer to the [Skillz documentation](https://developers.skillz.com/developer/docs/install_framework_ios)
+Once the SDK is downloaded, the Skillz embedded framework will need to be added to the project. For additional SDK installation details refer to the [Skillz documentation](https://developers.skillz.com/developer/docs/install_framework_ios).
 
 ### Integration Steps
 
