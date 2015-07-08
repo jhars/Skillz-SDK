@@ -31,3 +31,7 @@ DerivedData
 # Carthage/Checkouts
 
 Carthage/Build
+
+# Avoid checking in Skillz framework. You have to add this yourself :)
+SkillzSDK-iOS.embeddedframework/
+SkillzSDK-iOS_DEBUG.embeddedframework/
