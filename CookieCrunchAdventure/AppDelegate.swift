@@ -54,7 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SkillzDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+
     func tournamentWillBegin(gameParameters: [NSObject : AnyObject]!) {
         //Get the "level_index" key and try to parse it as an integer.
         if let indx = (gameParameters["level_index"] as? String) {
