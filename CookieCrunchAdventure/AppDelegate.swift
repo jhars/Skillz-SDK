@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SkillzDelegate {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
     }
 
-    func tournamentWillBegin(gameParameters: [NSObject : AnyObject]!) {
+    func tournamentWillBegin(gameParameters: [NSObject : AnyObject]!, withMatchInfo matchInfo: SKZMatchInfo!) {
         //Get the "level_index" key and try to parse it as an integer.
         if let indx = (gameParameters["level_index"] as? String) {
             if let tryInt : Int = indx.toInt() {
