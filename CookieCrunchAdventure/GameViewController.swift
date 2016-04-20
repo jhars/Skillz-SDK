@@ -1,7 +1,7 @@
 import UIKit
 import SpriteKit
 import AVFoundation
-
+import Skillz
 
 var LevelIndex : Int = 0
 
@@ -32,8 +32,8 @@ class GameViewController: UIViewController {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func viewDidLoad() {
@@ -186,7 +186,7 @@ class GameViewController: UIViewController {
         //self.parentViewController?.dismissViewControllerAnimated(true) { }
     }
     
-    @IBAction func shuffleButtonPressed(AnyObject) {
+    @IBAction func shuffleButtonPressed(_: AnyObject) {
         shuffle()
         
         // Pressing the shuffle button costs a move.

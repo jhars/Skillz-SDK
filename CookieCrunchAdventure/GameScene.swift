@@ -183,11 +183,11 @@ class GameScene: SKScene {
     
     // MARK: Detecting Swipes
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
         // Convert the touch location to a point relative to the cookiesLayer.
-        let touch = touches.first as! UITouch
+        let touch = touches.first as! UITouch!
         let location = touch.locationInNode(cookiesLayer)
         
         // If the touch is inside a square, then this might be the start of a
@@ -207,7 +207,7 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         
         // If swipeFromColumn is nil then either the swipe began outside
@@ -215,7 +215,7 @@ class GameScene: SKScene {
         // to ignore the rest of the motion.
         if swipeFromColumn == nil { return }
         
-        let touch = touches.first as! UITouch
+        let touch = touches.first as! UITouch!
         let location = touch.locationInNode(cookiesLayer)
         
         let (success, column, row) = convertPoint(location)
@@ -272,7 +272,7 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // Remove the selection indicator with a fade-out. We only need to do this
         // when the player didn't actually swipe.
         if selectionSprite.parent != nil && swipeFromColumn != nil {
@@ -285,8 +285,8 @@ class GameScene: SKScene {
         swipeFromRow = nil
     }
     
-    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent) {
-        touchesEnded(touches, withEvent: event)
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        touchesEnded(touches!, withEvent: event)
     }
     
     // MARK: Animations
@@ -382,7 +382,7 @@ class GameScene: SKScene {
     func animateFallingCookies(columns: [[Cookie]], completion: () -> ()) {
         var longestDuration: NSTimeInterval = 0
         for array in columns {
-            for (idx, cookie) in enumerate(array) {
+            for (idx, cookie) in array.enumerate() {
                 let newPosition = pointForColumn(cookie.column, row: cookie.row)
                 
                 // The further away from the hole you are, the bigger the delay
@@ -422,7 +422,7 @@ class GameScene: SKScene {
             // in the array, which is always the top-most one for this column.
             let startRow = array[0].row + 1
             
-            for (idx, cookie) in enumerate(array) {
+            for (idx, cookie) in array.enumerate() {
                 
                 // Create a new sprite for the cookie.
                 let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)

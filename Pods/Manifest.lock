@@ -1,0 +1,10 @@
+PODS:
+  - Skillz (13.0.24)
+
+DEPENDENCIES:
+  - Skillz
+
+SPEC CHECKSUMS:
+  Skillz: 8ea7a692696d604f6bbe31f850506f558bf4054c
+
+COCOAPODS: 0.39.0

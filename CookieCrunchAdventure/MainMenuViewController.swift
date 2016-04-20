@@ -1,6 +1,7 @@
 import UIKit
 import SpriteKit
 import AVFoundation
+import Skillz
 
 
 class MainMenuViewController : UIViewController {
@@ -13,8 +14,8 @@ class MainMenuViewController : UIViewController {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
     
     

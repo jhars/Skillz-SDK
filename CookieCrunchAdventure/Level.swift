@@ -34,14 +34,14 @@ class Level {
             if let tilesArray: AnyObject = dictionary["tiles"] {
                 
                 // Loop through the rows...
-                for (row, rowArray) in enumerate(tilesArray as! [[Int]]) {
+                for (row, rowArray) in (tilesArray as! [[Int]]).enumerate() {
                     
                     // Note: In Sprite Kit (0,0) is at the bottom of the screen,
                     // so we need to read this file upside down.
                     let tileRow = NumRows - row - 1
                     
                     // Loop through the columns in the current row...
-                    for (column, value) in enumerate(rowArray) {
+                    for (column, value) in rowArray.enumerate() {
                         
                         // If the value is 1, create a tile object.
                         if value == 1 {
@@ -65,7 +65,7 @@ class Level {
     func shuffle() -> Set<Cookie> {
         var set: Set<Cookie>
         
-        do {
+        repeat {
             // Removes the old cookies and fills up the level with all new ones.
             set = createInitialCookies()
             
@@ -100,7 +100,7 @@ class Level {
                     // creates a chain of 3 or more. We want there to be 0 matches in
                     // the initial state.
                     var cookieType: CookieType
-                    do {
+                    repeat {
                         cookieType = CookieType.random()
                     }
                         while (column >= 2 &&
@@ -288,7 +288,7 @@ class Level {
                             
                             // ...then add all the cookies from this chain into the set.
                             let chain = Chain(chainType: .Horizontal)
-                            do {
+                            repeat {
                                 chain.addCookie(cookies[column, row]!)
                                 ++column
                             }
@@ -319,7 +319,7 @@ class Level {
                         cookies[column, row + 2]?.cookieType == matchType {
                             
                             let chain = Chain(chainType: .Vertical)
-                            do {
+                            repeat {
                                 chain.addCookie(cookies[column, row]!)
                                 ++row
                             }
@@ -432,7 +432,7 @@ class Level {
                     // it cannot be equal to the previous type. This prevents too many
                     // "freebie" matches.
                     var newCookieType: CookieType
-                    do {
+                    repeat {
                         newCookieType = CookieType.random()
                     } while newCookieType == cookieType
                     cookieType = newCookieType

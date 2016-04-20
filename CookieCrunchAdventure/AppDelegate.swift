@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import AVFoundation
+import Skillz
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SkillzDelegate {
@@ -17,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SkillzDelegate {
     
     lazy var backgroundMusic: AVAudioPlayer = {
         let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
-        let player = AVAudioPlayer(contentsOfURL: url, error: nil)
-        player.numberOfLoops = -1
-        return player
+        let player = try? AVAudioPlayer(contentsOfURL: url!)
+        player!.numberOfLoops = -1
+        return player!
         }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -54,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SkillzDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
 
     func tournamentWillBegin(gameParameters: [NSObject : AnyObject]!, withMatchInfo matchInfo: SKZMatchInfo!) {
         //Get the "level_index" key and try to parse it as an integer.
         if let indx = (gameParameters["level_index"] as? String) {
-            if let tryInt : Int = indx.toInt() {
+            if let tryInt : Int = Int(indx) {
                 LevelIndex = tryInt
             } else {
                 LevelIndex = 0
